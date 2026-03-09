@@ -13,6 +13,10 @@ SELECT * FROM reviewers;
 -- name: GetLeastRecentReviewer :one
 SELECT * FROM reviewers
 WHERE active = 1
+  AND NOT EXISTS (
+    SELECT 1 FROM review_jobs rj
+    WHERE rj.reviewer_id = reviewers.id AND rj.status = 'pending'
+  )
 ORDER BY last_assigned ASC NULLS FIRST
 LIMIT 1;
 

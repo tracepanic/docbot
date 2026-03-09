@@ -54,6 +54,10 @@ func (q *Queries) DeleteReviewer(ctx context.Context, id int64) error {
 const getLeastRecentReviewer = `-- name: GetLeastRecentReviewer :one
 SELECT id, discord_user_id, username, active, last_assigned, created_at FROM reviewers
 WHERE active = 1
+  AND NOT EXISTS (
+    SELECT 1 FROM review_jobs rj
+    WHERE rj.reviewer_id = reviewers.id AND rj.status = 'pending'
+  )
 ORDER BY last_assigned ASC NULLS FIRST
 LIMIT 1
 `
