@@ -1,0 +1,3 @@
+DROP TABLE IF EXISTS review_jobs;
+DROP TABLE IF EXISTS reviewers;
+DROP TABLE IF EXISTS documents;

@@ -1,0 +1,27 @@
+{{define "title"}}Documentation Pages{{end}} {{define "content"}}
+<h1>Documentation Pages</h1>
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Doc</th>
+      <th>Last Review</th>
+      <th>Status</th>
+      <th>Link</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{range .Rows}}
+    <tr>
+      <td>{{.ID}}</td>
+      <td>{{.Title}}</td>
+      <td>{{if .LastReview}}{{.LastReview}}{{else}}Never{{end}}</td>
+      <td><span class="status-{{.Status}}">{{.Status}}</span></td>
+      <td>
+        <a href="{{.URL}}" target="_blank" rel="noopener">Open</a>
+      </td>
+    </tr>
+    {{end}}
+  </tbody>
+</table>
+{{end}}

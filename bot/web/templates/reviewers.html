@@ -1,0 +1,23 @@
+{{define "title"}}Reviewers{{end}}
+
+{{define "content"}}
+<h1>Reviewers</h1>
+<table>
+  <thead>
+    <tr>
+      <th>Username</th>
+      <th>Last Assigned</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{range .Rows}}
+    <tr>
+      <td>{{.Username}}</td>
+      <td>{{if .LastAssigned}}{{.LastAssigned}}{{else}}Never{{end}}</td>
+      <td><span class="status-{{.Status}}">{{.Status}}</span></td>
+    </tr>
+    {{end}}
+  </tbody>
+</table>
+{{end}}
